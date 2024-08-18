@@ -148,6 +148,24 @@ void printList(const ListNode* head) {
     return;
 }
 
+void destroyList(ListNode *head){
+    if(nullptr == head)
+    {
+        cout << "List is empty."<<endl;
+        return;
+    }
+
+    ListNode *prev = head;
+    ListNode *next = nullptr;
+    while (head) {
+        next = head->next;
+        delete head;
+        head = next;
+    }
+    return;
+}
+
+
 int main(){
 
     vector<int> vecHead {-2,5,-1,-10,1,-1,10,2,2,2,5,5};
@@ -180,6 +198,9 @@ int main(){
     cout << endl << "Print list after process." << endl;
     printList (head);
     cout << endl;
+
+    destroyList(head);
+    head = nullptr;
 
     return 0;
 }

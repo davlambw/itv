@@ -31,7 +31,6 @@ ListNode* Solution::removeSublists(ListNode *head){
     bool found_last_time = true;
 
     int last_time_total_node = 0;
-    int x = 1;
     int num = 0;
     ListNode *leftN = head;
     ListNode *rightN = head;
@@ -155,7 +154,6 @@ void destroyList(ListNode *head){
         return;
     }
 
-    ListNode *prev = head;
     ListNode *next = nullptr;
     while (head) {
         next = head->next;
@@ -174,20 +172,23 @@ int main(){
     ListNode *head = nullptr;
 
     // print vec data
-    cout<< "vec data: " <<endl;
-    for(auto it = vecHead.rbegin(); it != vecHead.rend(); ++it) {
+    cout << endl << "vec data: " <<endl;
+    for(auto it = vecHead.begin(); it != vecHead.end(); ++it) {
         cout << *it ;
-        head = new ListNode(*it, head);
-        if (it + 1 != vecHead.rend())
+        if (it + 1 != vecHead.end())
             cout << ", ";
         else
             cout << endl;
     }
 
+    // creat the list
+    for(auto it = vecHead.rbegin(); it != vecHead.rend(); ++it) {
+        head = new ListNode(*it, head);
+    }
     cout << endl;
 
     // print list
-    cout << "Print list before processing:" <<endl;
+    cout << "Print list before process:" <<endl;
     printList(head);
     cout<<endl;
 
@@ -195,7 +196,7 @@ int main(){
     head = sl.removeSublists(head);
 
     // print list after the process
-    cout << endl << "Print list after process." << endl;
+    cout << endl << "Print list after process:" << endl;
     printList (head);
     cout << endl;
 
